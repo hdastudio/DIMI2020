@@ -5,7 +5,7 @@ import com.netcracker.purchases.utils.DataVerification;
 
 import java.util.List;
 
-public class PurchaseManager {
+public final class PurchaseManager {
     private PurchaseManager() {
     }
 
@@ -22,13 +22,13 @@ public class PurchaseManager {
     }
 
     public static boolean del(String strNum, List<Purchase> purchases) {
-        if (DataVerification.isDigit(strNum) && (Integer.parseInt(strNum) > 0) && (Integer.parseInt(strNum) <= purchases.size())) {
+        if (DataVerification.isDigit(strNum) && (Integer.parseInt(strNum) > 0) &&
+                (Integer.parseInt(strNum) <= purchases.size())) {
             purchases.remove(Integer.parseInt(strNum));
             return true;
         } else {
             return false;
         }
-
     }
 
     public static void cleanArray(List<Purchase> purchases) {
@@ -41,11 +41,11 @@ public class PurchaseManager {
         return !str.isEmpty();
     }
 
-    public static boolean checkCount(String count){
+    public static boolean checkCount(String count) {
         return DataVerification.isDigit(count) && (Integer.parseInt(count) > 0);
     }
 
-    public static void changeComment(StringBuilder comment){
+    public static void changeComment(StringBuilder comment) {
         if (comment.toString().isEmpty()) {
             comment.append(" ");
         }

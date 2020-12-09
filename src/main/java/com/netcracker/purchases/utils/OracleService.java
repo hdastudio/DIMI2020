@@ -6,19 +6,18 @@ import com.netcracker.purchases.models.types.Purchase;
 import java.sql.*;
 import java.util.List;
 
-public class OracleService {
-    private static final String host = "sql.edu-netcracker.com";
-    private static final int port = 1251;
-    private static final String sid = "xe";
-    private static final String user = "TLT_15";
-    private static final String pwd = "TLT_15";
-    private static final String url = String.format("jdbc:oracle:thin:@%s:%d:%s", host, port, sid);
+public final class OracleService {
+    private static final String HOST = "sql.edu-netcracker.com";
+    private static final int PORT = 1251;
+    private static final String SID = "xe";
+    private static final String USER_AND_PWD = "TLT_15";
+    private static final String URL = String.format("jdbc:oracle:thin:@%s:%d:%s", HOST, PORT, SID);
 
     private OracleService() {
     }
 
     public static boolean load(List<Purchase> purchases) {
-        try (Connection connection = DriverManager.getConnection(url, user, pwd)) {
+        try (Connection connection = DriverManager.getConnection(URL, USER_AND_PWD, USER_AND_PWD)) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from purchases");
 
@@ -34,7 +33,7 @@ public class OracleService {
     }
 
     public static boolean save(List<Purchase> purchases) {
-        try (Connection connection = DriverManager.getConnection(url, user, pwd)) {
+        try (Connection connection = DriverManager.getConnection(URL, USER_AND_PWD, USER_AND_PWD)) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("delete from purchases");
 
@@ -50,7 +49,7 @@ public class OracleService {
         }
     }
 
-    public static boolean JdbcIsInstalled() {
+    public static boolean isJdbcInstalled() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             return true;

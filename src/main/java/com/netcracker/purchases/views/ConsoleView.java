@@ -14,7 +14,7 @@ public class ConsoleView {
     private static final String PURCHASE = "покупк";
     private static final Scanner in = new Scanner(System.in);
     private static final List<Purchase> purchases = new ArrayList<>();
-    private static final boolean JdbcIsInstalled = OracleService.JdbcIsInstalled();
+    private static final boolean JdbcIsInstalled = OracleService.isJdbcInstalled();
 
     public static void start() {
         dataLoad();

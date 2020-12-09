@@ -1,6 +1,6 @@
 package com.netcracker.purchases.utils;
 
-public class DataVerification {
+public final class DataVerification {
     private DataVerification() {
     }
 

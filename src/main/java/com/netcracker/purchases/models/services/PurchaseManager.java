@@ -21,14 +21,8 @@ public final class PurchaseManager {
         purchase.setComment(propPurchase[3].toString());
     }
 
-    public static boolean del(String strNum, List<Purchase> purchases) {
-        if (DataVerification.isDigit(strNum) && (Integer.parseInt(strNum) > 0) &&
-                (Integer.parseInt(strNum) <= purchases.size())) {
-            purchases.remove(Integer.parseInt(strNum));
-            return true;
-        } else {
-            return false;
-        }
+    public static void del(String strNum, List<Purchase> purchases) {
+        purchases.remove(Integer.parseInt(strNum));
     }
 
     public static void cleanArray(List<Purchase> purchases) {
@@ -49,5 +43,10 @@ public final class PurchaseManager {
         if (comment.toString().isEmpty()) {
             comment.append(" ");
         }
+    }
+
+    public static boolean isNumberPurchases(String strNum, List<Purchase> purchases) {
+        return DataVerification.isDigit(strNum) && (Integer.parseInt(strNum) >= 0) &&
+                (Integer.parseInt(strNum) < purchases.size());
     }
 }

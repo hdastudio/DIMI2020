@@ -6,7 +6,8 @@ import com.netcracker.purchases.models.types.Purchase;
 import java.io.*;
 import java.util.List;
 
-public class CsvService {
+public final class CsvService {
+    private static final String encoding = "windows-1251";
     private static final String FILE_NAME_PURCHASES = "Purchases.csv";
 
     private CsvService() {
@@ -14,7 +15,7 @@ public class CsvService {
 
     public static boolean load(List<Purchase> purchases) {
         try (BufferedReader filePurchases = new BufferedReader(new InputStreamReader(
-                new FileInputStream(FILE_NAME_PURCHASES), "windows-1251"))) {
+                new FileInputStream(FILE_NAME_PURCHASES), encoding))) {
             String tempStr;
             filePurchases.readLine();
             while ((tempStr = filePurchases.readLine()) != null) {
@@ -29,7 +30,8 @@ public class CsvService {
     }
 
     public static boolean save(List<Purchase> purchases) {
-        try (Writer filePurchases = new OutputStreamWriter(new FileOutputStream(FILE_NAME_PURCHASES), "windows-1251")) {
+        try (Writer filePurchases = new OutputStreamWriter(
+                new FileOutputStream(FILE_NAME_PURCHASES), encoding)) {
             filePurchases.write("Номер;Название;Количество;Еденицы измерения;Комментарий\n");
             for (Purchase purchase : purchases) {
                 String outputStr = String.format("%s;%s;%s;%s;%s\n", purchase.getIdLocal(), purchase.getName(),

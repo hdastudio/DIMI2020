@@ -15,7 +15,6 @@ public final class ConsoleView {
     private static final Scanner IN = new Scanner(System.in);
     private static final List<Purchase> PURCHASES = new ArrayList<>();
     private static final boolean IS_JDBC_INSTALLED = OracleService.isJdbcInstalled();
-    private static final String MSG_PURCHASES_EMPTY = String.format("Список с %sами пуст!\n", PURCHASE);
     private static final String MSG_INPUT_ERR = "Ошибка! Введено некоректное значение, повторите ввод.\n";
 
     private ConsoleView() {
@@ -41,7 +40,7 @@ public final class ConsoleView {
             }
 
             if ((PURCHASES.size() == 0) && (num != 1) && (num != 6)) {
-                System.out.println(MSG_PURCHASES_EMPTY);
+                System.out.printf("Список с %sами пуст!\n\n", PURCHASE);
                 continue;
             }
 
@@ -73,9 +72,7 @@ public final class ConsoleView {
                 System.out.printf("Удаление %sи успешно завершено!\n\n", PURCHASE);
                 break;
             case 6:
-                if (PURCHASES.size() != 0) {
-                    closeApp();
-                }
+                closeApp();
                 System.out.println("Работа программы завершена!");
                 break;
             default:
@@ -99,13 +96,16 @@ public final class ConsoleView {
     }
 
     private static void showPurchase() {
-        String format = "%-15s%-50s%-20s%-25s%-15s";
-        System.out.printf(format, "Номер", "Название", "Количество", "Еденицы измерения", "Комментарий");
+        String format = "%-15s%-15s%-50s%-20s%-25s%-15s";
+        System.out.printf(format, "Номер", "ID", "Название", "Количество", "Еденицы измерения", "Комментарий");
         System.out.println();
+
+        int i = 0;
         for (Purchase purchase : PURCHASES) {
-            System.out.printf(format, purchase.getIdLocal(), purchase.getName(),
+            System.out.printf(format, i, purchase.getIdLocal(), purchase.getName(),
                     purchase.getCount(), purchase.getUnit(), purchase.getComment());
             System.out.println();
+            i++;
         }
         System.out.println();
     }
@@ -179,10 +179,10 @@ public final class ConsoleView {
 
         while (true) {
             System.out.println(msg);
-            String ans = IN.nextLine();
-            if (ans.toLowerCase().equals("ф")) {
+            String ans = IN.nextLine().toLowerCase();
+            if (ans.equals("ф")) {
                 return true;
-            } else if (ans.toLowerCase().equals("б")) {
+            } else if (ans.equals("б")) {
                 return false;
             } else {
                 System.out.println(MSG_INPUT_ERR);
@@ -193,11 +193,11 @@ public final class ConsoleView {
     private static void closeApp() {
         while (true) {
             System.out.println("Желаете сохранить данные?(Д/Н)");
-            String ans = IN.nextLine();
-            if (ans.toLowerCase().equals("д")) {
+            String ans = IN.nextLine().toLowerCase();
+            if (ans.equals("д")) {
                 dataSave();
                 break;
-            } else if (ans.toLowerCase().equals("н")) {
+            } else if (ans.equals("н")) {
                 break;
             } else {
                 System.out.println(MSG_INPUT_ERR);

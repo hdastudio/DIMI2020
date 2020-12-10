@@ -46,7 +46,11 @@ public final class PurchaseManager {
     }
 
     public static boolean isNumberPurchases(String strNum, List<Purchase> purchases) {
-        return DataVerification.isDigit(strNum) && (Integer.parseInt(strNum) >= 0) &&
-                (Integer.parseInt(strNum) < purchases.size());
+        try {
+            purchases.get(Integer.parseInt(strNum));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 }

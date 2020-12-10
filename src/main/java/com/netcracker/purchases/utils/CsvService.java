@@ -32,7 +32,7 @@ public final class CsvService {
     public static boolean save(List<Purchase> purchases) {
         try (Writer filePurchases = new OutputStreamWriter(
                 new FileOutputStream(FILE_NAME_PURCHASES), encoding)) {
-            filePurchases.write("Номер;Название;Количество;Еденицы измерения;Комментарий\n");
+            filePurchases.write("ID;Название;Количество;Еденицы измерения;Комментарий\n");
             for (Purchase purchase : purchases) {
                 String outputStr = String.format("%s;%s;%s;%s;%s\n", purchase.getIdLocal(), purchase.getName(),
                         purchase.getCount(), purchase.getUnit(), purchase.getComment());

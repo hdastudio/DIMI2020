@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.List;
 
 public final class CsvService {
-    private static final String encoding = "windows-1251";
+    private static final String ENCODING = "windows-1251";
     private static final String FILE_NAME_PURCHASES = "Purchases.csv";
 
     private CsvService() {
@@ -15,7 +15,7 @@ public final class CsvService {
 
     public static boolean load(List<Purchase> purchases) {
         try (BufferedReader filePurchases = new BufferedReader(new InputStreamReader(
-                new FileInputStream(FILE_NAME_PURCHASES), encoding))) {
+                new FileInputStream(FILE_NAME_PURCHASES), ENCODING))) {
             String tempStr;
             filePurchases.readLine();
             while ((tempStr = filePurchases.readLine()) != null) {
@@ -31,7 +31,7 @@ public final class CsvService {
 
     public static boolean save(List<Purchase> purchases) {
         try (Writer filePurchases = new OutputStreamWriter(
-                new FileOutputStream(FILE_NAME_PURCHASES), encoding)) {
+                new FileOutputStream(FILE_NAME_PURCHASES), ENCODING)) {
             filePurchases.write("ID;Название;Количество;Еденицы измерения;Комментарий\n");
             for (Purchase purchase : purchases) {
                 String outputStr = String.format("%s;%s;%s;%s;%s\n", purchase.getIdLocal(), purchase.getName(),

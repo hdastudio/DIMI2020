@@ -17,7 +17,7 @@ public class StudentsListManager {
     Scanner scanner = new Scanner(System.in);
     Student_db student_db = new Student_db();
     StudentList studentList = new StudentList();
-    DataVerify dataVerify = new DataVerify();
+    DataVerification dataVerify = new DataVerification();
 
     public void choosenOption(StudentList students){
         option=dataVerify.intVerify();

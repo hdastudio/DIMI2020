@@ -11,7 +11,7 @@ public class Student {
     private int course;
     private int student_id;
 
-    public Student(int student_id,String lastname, String firstname, String middlename, int age, String faculty, int course) {
+    public Student(int student_id, String lastname, String firstname, String middlename, int age, String faculty, int course) {
         this.student_id = student_id;
         this.firstname = firstname;
         this.lastname = lastname;

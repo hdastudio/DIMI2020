@@ -8,13 +8,21 @@
     <artifactId>DIMI2020</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+
+
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.6</version>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.3.0.0</version>
         </dependency>
+
+
     </dependencies>
+
+
+
     
 </project>

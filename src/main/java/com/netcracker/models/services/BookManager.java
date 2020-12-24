@@ -5,9 +5,6 @@ import com.netcracker.controllers.DataBaseOracle;
 import com.netcracker.models.types.Book;
 
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,9 +14,14 @@ import java.util.*;
 
 public class BookManager {
 
-    private DataBaseOracle dataBaseOracle;
-    private ArrayList<Book> bookList;
+    private static BookManager staticBookManager = new BookManager(DataBaseOracle.getStaticDataBaseOracle());
 
+    public static BookManager getStaticBookManager() {
+        return staticBookManager;
+    }
+
+    private DataBaseOracle dataBaseOracle;
+    public ArrayList<Book> bookList;
 
     public BookManager(DataBaseOracle dataBaseOracle)
     {
@@ -30,32 +32,7 @@ public class BookManager {
 
     public void readFile()   // чтение файла, чтение из таблицы BOOKS в базе данных
     {
-//        try(FileReader reader = new FileReader("table.csv"))
-//        {
-//            Scanner scan = new Scanner(reader);
-//            String buffer = "";
-//            ArrayList<String> bufferArrayString = new ArrayList<String>();
-//
-//            while (scan.hasNextLine())
-//            {
-//                buffer = scan.nextLine();
-//                bufferArrayString = parseString(buffer);
-//               // System.out.println(bufferArrayString );
-//                String bookName = bufferArrayString.get(0);
-//                String author = bufferArrayString.get(1);
-//                String year = bufferArrayString.get(2);
-//                int intYear =Integer.parseInt(year);
-//              //  System.out.println(bookName + author + year);
-//                bookList.add(new Book(bookName, author, intYear));
-//            }
-//        }
-//        catch(IOException ex){
-//
-//            System.out.println(ex.getMessage());
-//        }
-
-
-        Connection connection = dataBaseOracle.getConnection();
+    Connection connection = dataBaseOracle.getConnection();
 
         Statement statement = null;
         try {
@@ -81,48 +58,7 @@ public class BookManager {
         }
     }
 
-//    public void writeFile()    // Записываем лист в файл
-//    {
-//        try(FileWriter writer = new FileWriter("table.csv", false))
-//        {
-//            String buf;
-//            for (int i = 0; i<getSize(); ++i)
-//            {
-//                buf = bookList.get(i).toString();
-//                String bookName = bookList.get(i).getBookName();
-//                String author = bookList.get(i).getAuthor();
-//                int year = bookList.get(i).getPresentYear();
-//
-//                writer.write(bookName + ';' + author + ';' + year + '\n');
-//            }
-//
-//            writer.flush();
-//        }
-//        catch(IOException ex){
-//
-//            System.out.println(ex.getMessage());
-//        }
-//    }
-
-//    public ArrayList<String> parseString(String myString)  // разбиение строк на элементы
-//    {
-//        ArrayList<String> arrayString = new ArrayList<String>();
-//        String buffer = "";
-//        for (int i = 0; i<myString.length(); ++i)
-//        {
-//            if( myString.charAt(i) != ';')
-//            {
-//                buffer = buffer + myString.charAt(i);
-//            } else {
-//                arrayString.add(buffer);
-//                buffer = "";
-//            }
-//        }
-//        arrayString.add(buffer);
-//        return arrayString;
-//    }
-
-    public boolean contains(Book book)  // размер листа
+  public boolean contains(Book book)  // размер листа
     {
         return bookList.contains(book);
     }
@@ -145,6 +81,13 @@ public class BookManager {
             bookList.remove(index);
             return true;
         } else return false;
+    }
+
+    public  boolean  removeElem(Book book) // удалет элемент
+    {
+         if (bookList.remove(book))
+             return true;
+         else return false;
     }
 
     public boolean addElem(Book book)  // добавдяет эдемент
@@ -171,31 +114,4 @@ public class BookManager {
         } else return false;
     }
 
-    public boolean editElemBookName(int index, String bookName)
-    {
-        if (checkIndex(index) ) {
-            Book book = bookList.get(index);
-            book.setBookName(bookName);
-
-            return true;
-        } else return false;
-    }
-    public boolean editElemAuthor(int index, String author)
-    {
-        if ( checkIndex(index)) {
-            Book book = bookList.get(index);
-            book.setAuthor(author);
-            return true;
-        }
-        else return false ;
-    }
-    public boolean editElemYear(int index, int year)
-    {
-        if ( checkIndex(index) ) {
-            Book book = bookList.get(index);
-            book.setPresentYear(year);
-            return true;
-        }
-        else return  false;
-    }
 }

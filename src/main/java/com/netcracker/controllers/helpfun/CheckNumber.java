@@ -2,30 +2,26 @@ package com.netcracker.controllers.helpfun;
 
 public class CheckNumber {
     private String strNumber;
-    private int number  = -1;
-    private boolean correct = false;
-    public CheckNumber(String strNumber)
-    {
+    private int number = -1;
+    private boolean correct ;
+
+    public CheckNumber(String strNumber) {
         this.strNumber = strNumber;
 
-        if (isNumeric() )
-        {
-            if (assignIntYear())
-                correct = true;
-            else correct = false;
-        } else  correct = false;
+        if (isNumeric()) {
+            correct = (assignIntYear());
+        } else correct = false;
     }
 
-    public boolean getCorrect()
-    {
+    public boolean getCorrect() {
         return correct;
     }
-    public int getnumber()
-    {
+
+    public int getnumber() {
         return number;
     }
 
-    public  boolean isNumeric() {
+    public boolean isNumeric() {
         if (strNumber.length() > 0) {
             int size = strNumber.length();
             char firstChar = strNumber.charAt(0);

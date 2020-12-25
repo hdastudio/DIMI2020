@@ -19,10 +19,10 @@ public class DataBaseOracle {
 
 
     public Connection connection;
-    private   Driver driver;
-    public DataBaseOracle()
-    {
-         driver = new oracle.jdbc.OracleDriver();
+    private Driver driver;
+
+    public DataBaseOracle() {
+        driver = new oracle.jdbc.OracleDriver();
         try {
             DriverManager.registerDriver(driver);
         } catch (SQLException throwables) {
@@ -33,7 +33,7 @@ public class DataBaseOracle {
 
         try {
 
-            Properties p=new Properties();
+            Properties p = new Properties();
             p.setProperty("user", "TLT_7");
             p.setProperty("password", "TLT_7");
 //            p.setProperty("useUnicode", "true");

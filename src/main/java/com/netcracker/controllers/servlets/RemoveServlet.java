@@ -27,7 +27,7 @@ public class RemoveServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-          String index = req.getParameter("number");
+        String index = req.getParameter("number");
 
         System.out.println("index " + index);
 
@@ -37,21 +37,20 @@ public class RemoveServlet extends HttpServlet {
         if (checkNumber.getCorrect()) // проверка числа на корректность
         {
             correct = true;
-            intIndex= checkNumber.getnumber();
+            intIndex = checkNumber.getnumber();
         }
 
 
         if (correct) {  // если корректное число
             DeleteFrom deleteFrom = new DeleteFrom();
             intIndex--;
-           if ( deleteFrom.delete(intIndex) )
-           {
-               req.setAttribute("removeBook", "книга удалена");
-               doGet(req, resp);
-           } else {
-               req.setAttribute("removeBook", "книга не удалена");
-               doGet(req, resp);
-           }
+            if (deleteFrom.delete(intIndex)) {
+                req.setAttribute("removeBook", "книга удалена");
+                doGet(req, resp);
+            } else {
+                req.setAttribute("removeBook", "книга не удалена");
+                doGet(req, resp);
+            }
         } else {
             req.setAttribute("removeBook", "не корректное число");
             doGet(req, resp);

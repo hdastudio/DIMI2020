@@ -14,26 +14,27 @@
 <body>
 
 <div>
-<form method="post">
-    <label>название книги:
-        <input type="text" name="book_name"><br />
-    </label>
-    <label>автор книги:
-        <input type="text" name="book_author"><br />
-    </label>
-    <label>год издания:
-        <input type="text" name="book_year"><br />
-    </label>
+    <form method="post">
+        <label>название книги:
+            <input type="text" name="book_name"><br/>
+        </label>
+        <label>автор книги:
+            <input type="text" name="book_author"><br/>
+        </label>
+        <label>год издания:
+            <input type="text" name="book_year"><br/>
+        </label>
 
-    <button type="add book">добавить</button>
-</form>
+        <button type="submit">добавить</button>
+    </form>
 </div>
 
 <div>
     <%
-        String correct ;
-        correct  =  (String) (request.getAttribute("addBook"));
-    %> <h3> <%= correct %></h3>
+        String correct;
+        correct = (String) (request.getAttribute("addBook"));
+    %> <h3><%= correct %>
+</h3>
 </div>
 
 <div>

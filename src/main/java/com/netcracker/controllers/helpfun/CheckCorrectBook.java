@@ -80,7 +80,7 @@ public class CheckCorrectBook {
 //      } else return false;
 //  }
 
-    public boolean isNumeric() {
+    public boolean isNumeric() {   // проверяет , является ли string числом
         if (bookYear.length() > 0) {
             int size = bookYear.length();
             char firstChar = bookYear.charAt(0);

@@ -13,24 +13,25 @@
     <title>Title</title>
 </head>
 <body>
-  <H1>список книг</H1>
+<H1>список книг</H1>
 
 <div>
-  <ol>
-          <%
-             ArrayList<Book> books = BookManager.getStaticBookManager().bookList;
-              for (int i = 0; i < books.size(); ++i) {
-          %>
-          <li><%= books.get(i) %></li>
-          <%
-              }
-          %>
+    <ol>
+        <%
+            ArrayList<Book> books = BookManager.getStaticBookManager().bookList;
+            for (int i = 0; i < books.size(); ++i) {
+        %>
+        <li><%= books.get(i) %>
+        </li>
+        <%
+            }
+        %>
     </ol>
-  </div>
+</div>
 
-  <div>
-      <button onclick="location.href='/'">назад</button>
-  </div>
+<div>
+    <button onclick="location.href='/'">назад</button>
+</div>
 
 </body>
 </html>

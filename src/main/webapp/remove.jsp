@@ -13,40 +13,42 @@
     <title>Remove</title>
 </head>
 <body>
- <div>
-     <ol>
-         <%
-             ArrayList<Book> books = BookManager.getStaticBookManager().bookList;
-             for (int i = 0; i < books.size(); ++i) {
-         %>
-         <li><%= books.get(i) %></li>
-         <%
-             }
-         %>
-     </ol>
- </div>
+<div>
+    <ol>
+        <%
+            ArrayList<Book> books = BookManager.getStaticBookManager().bookList;
+            for (int i = 0; i < books.size(); ++i) {
+        %>
+        <li><%= books.get(i) %>
+        </li>
+        <%
+            }
+        %>
+    </ol>
+</div>
 
 <div>
     <form method="post">
         <label>удалить книгу номер:
-            <input type="text" name="number"><br />
+            <input type="text" name="number"><br/>
         </label>
 
-        <button type="remove">удалить</button>
+        <button type="submit">удалить</button>
     </form>
 </div>
 
- <div>
-     <%
-         String correct= "";
-                 correct =  (String) (request.getAttribute("removeBook"));
-         if (correct != null)
-     %> <h3> <%= correct %></h3>
- </div>
+<div>
+    <%
+        String correct ;
+        correct = (String) (request.getAttribute("removeBook"));
+        if (correct != null)
+    %> <h3><%= correct %>
+</h3>
+</div>
 
- <div>
-     <button onclick="location.href='/'">назад</button>
- </div>
+<div>
+    <button onclick="location.href='/'">назад</button>
+</div>
 
 </body>
 </html>

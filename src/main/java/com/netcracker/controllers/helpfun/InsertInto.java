@@ -10,8 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class InsertInto {
-    public  boolean insert(Book book)
-    {
+    public boolean insert(Book book) {
         BookManager bookManager = BookManager.getStaticBookManager();
         DataBaseOracle dataBaseOracle = DataBaseOracle.getStaticDataBaseOracle();
 

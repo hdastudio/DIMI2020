@@ -4,7 +4,6 @@ package com.netcracker.models.services;
 import com.netcracker.controllers.DataBaseOracle;
 import com.netcracker.models.types.Book;
 
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,17 +13,17 @@ import java.util.*;
 
 public class BookManager {
 
+    private DataBaseOracle dataBaseOracle;
+    public ArrayList<Book> bookList;
+
     private static BookManager staticBookManager = new BookManager(DataBaseOracle.getStaticDataBaseOracle());
 
     public static BookManager getStaticBookManager() {
         return staticBookManager;
     }
 
-    private DataBaseOracle dataBaseOracle;
-    public ArrayList<Book> bookList;
 
-    public BookManager(DataBaseOracle dataBaseOracle)
-    {
+    public BookManager(DataBaseOracle dataBaseOracle) {
         this.dataBaseOracle = dataBaseOracle;
         bookList = new ArrayList<Book>();
         readFile();   // читает файл
@@ -32,18 +31,18 @@ public class BookManager {
 
     public void readFile()   // чтение файла, чтение из таблицы BOOKS в базе данных
     {
-    Connection connection = dataBaseOracle.getConnection();
+        Connection connection = dataBaseOracle.getConnection();
 
-        Statement statement = null;
+        Statement statement;
         try {
             statement = connection.createStatement();
             String req = "SELECT * FROM books";
             ResultSet resultSet = statement.executeQuery(req);
 
-            int book_id = 0;
-            String book_name = "";
-            String book_author = "";
-            int book_year =  0;
+            int book_id;
+            String book_name;
+            String book_author;
+            int book_year;
 
             while (resultSet.next()) {
                 book_id = resultSet.getInt("book_id");
@@ -58,7 +57,7 @@ public class BookManager {
         }
     }
 
-  public boolean contains(Book book)  // размер листа
+    public boolean contains(Book book)  // размер листа
     {
         return bookList.contains(book);
     }
@@ -70,43 +69,35 @@ public class BookManager {
 
     public boolean checkIndex(int index)  // проверят размеры, диапозон
     {
-        if ( 0 <=  index  &&  index < bookList.size() ) {
-            return true;
-        } else return false;
+        return (0 <= index && index < bookList.size());
     }
 
-    public  boolean  removeElem(int index) // удалет элемент
+    public boolean removeElem(int index) // удалет элемент
     {
-        if (checkIndex(index) ) {
+        if (checkIndex(index)) {
             bookList.remove(index);
             return true;
         } else return false;
     }
 
-    public  boolean  removeElem(Book book) // удалет элемент
-    {
-         if (bookList.remove(book))
-             return true;
-         else return false;
-    }
-
     public boolean addElem(Book book)  // добавдяет эдемент
     {
         if (bookList.contains(book))
-         return false;
-        else if (bookList.add(book))
-            return true;
-        else return false;
+            return false;
+        else return (bookList.add(book));
+
     }
+
     public Book getElem(int index)   // возврат Книги по индексу
     {
         if (checkIndex(index))
             return bookList.get(index);
         else return null;
     }
+
     public boolean editElements(int index, String bookName, String bookAuthor, int bookYear)  // редактирование
     {
-        if (checkIndex(index) ) {
+        if (checkIndex(index)) {
             Book book = bookList.get(index);
             book.setElements(bookName, bookAuthor, bookYear);
 

@@ -48,12 +48,11 @@ public class EditServlet extends HttpServlet {
 
         if (correcNumber) {
             intIndex--;
-            Book book = null;
-            boolean correct = false;
+            Book book;
+
             CheckCorrectBook checkCorrectBook = new CheckCorrectBook(bookName, bookAuthor, bookYear);
 
             if (checkCorrectBook.checkCorrectBook()) {  // если корректный book
-                correct = true;
                 book = checkCorrectBook.getBook();
                 BookManager bookManager = BookManager.getStaticBookManager();
                 if (bookManager.checkIndex(intIndex)) // если есть индекс , входит в промежуток от 0 до количества книг
@@ -64,11 +63,11 @@ public class EditServlet extends HttpServlet {
                     if (!checkClone) {
                         UpdateBook updateBook = new UpdateBook();
                         if (updateBook.update(book, intIndex, hashOld)) {
-                            req.setAttribute("editBook", "книга " + intIndex+1 + " обновлена");
+                            req.setAttribute("editBook", "книга " + (intIndex + 1) + " обновлена");
                             doGet(req, resp);
                         } else // не смог обновить элемент
                         {
-                            req.setAttribute("editBook", "книга " + intIndex+1 + "не обновлена");
+                            req.setAttribute("editBook", "книга " + (intIndex + 1) + "не обновлена");
                             doGet(req, resp);
                         }
                     } else // уже есть такой элемент

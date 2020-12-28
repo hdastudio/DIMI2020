@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <servlet>
+        <servlet-name>DataLoad</servlet-name>
+        <servlet-class>com.netcracker.purchases.views.web.servlets.DataLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DataLoad</servlet-name>
+        <url-pattern>/DataLoad</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowPurchases</servlet-name>
+        <servlet-class>com.netcracker.purchases.views.web.servlets.ShowPurchases</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowPurchases</servlet-name>
+        <url-pattern>/ShowPurchases</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DataSave</servlet-name>
+        <servlet-class>com.netcracker.purchases.views.web.servlets.DataSave</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DataSave</servlet-name>
+        <url-pattern>/DataSave</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ActionsPurchases</servlet-name>
+        <servlet-class>com.netcracker.purchases.views.web.servlets.ActionsPurchases</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActionsPurchases</servlet-name>
+        <url-pattern>/ActionsPurchases</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CloseApp</servlet-name>
+        <servlet-class>com.netcracker.purchases.views.web.servlets.CloseApp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CloseApp</servlet-name>
+        <url-pattern>/CloseApp</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -32,11 +32,11 @@ public final class PurchaseManager {
     }
 
     public static boolean checkEmpty(String str) {
-        return !str.isEmpty();
+        return (str != null) && (!str.trim().isEmpty());
     }
 
     public static boolean checkCount(String count) {
-        return DataVerification.isDigit(count) && (Integer.parseInt(count) > 0);
+        return (count != null) && DataVerification.isDigit(count) && (Integer.parseInt(count) > 0);
     }
 
     public static void changeComment(StringBuilder comment) {

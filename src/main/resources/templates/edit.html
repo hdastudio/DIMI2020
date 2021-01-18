@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<H1>Изменить книгу</H1>
+
+<form  method="post"  action="#"    th:object="${book}"    >
+    <input
+            type="text"
+            th:value="${book.getBookName()}"
+            id="bookName" name="bookName"  required/>
+
+    <input
+            type="text"
+            th:value="${book.getAuthor()}"
+            id="author"     name="author"   required/>
+
+    <input type="number"
+           th:value="${book.getPresentYear()}"
+           id="presentYear"  name="presentYear" required/>
+
+    <button type="submit"  >update</button>
+</form>
+
+</body>
+</html>

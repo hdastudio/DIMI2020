@@ -15,10 +15,10 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public String index(ModelMap model) {
         model.addAttribute("books", bookService.findAll());
-        return "index1";
+        return "index";
     }
 
     @PostMapping("/add")
